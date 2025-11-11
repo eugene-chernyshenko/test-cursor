@@ -4,7 +4,7 @@ function App() {
   const navLinks = [
     { label: 'Product', href: '#features' },
     { label: 'Platform', href: '#platform' },
-    { label: 'Pricing', href: '#cta' },
+    { label: 'Pricing', href: '#pricing' },
     { label: 'Stories', href: '#stories' },
     { label: 'FAQ', href: '#faq' },
   ]
@@ -40,6 +40,59 @@ function App() {
       title: 'Launch playbooks',
       description:
         'Start from proven templates tailored to your industry so every release, announcement, and lifecycle campaign ships faster.',
+    },
+  ]
+
+  const pricingPlans = [
+    {
+      name: 'Starter',
+      price: '$49',
+      cadence: '/month',
+      description: 'Everything you need to launch your first campaigns with confidence.',
+      features: [
+        'Up to 3 launch workspaces',
+        'Journey automation builder',
+        'Email + in-app messaging',
+        'Performance snapshot dashboard',
+        'Chat and knowledge base support',
+      ],
+      ctaLabel: 'Start trial',
+      ctaHref: '#signup',
+      buttonVariant: 'ghost',
+    },
+    {
+      name: 'Growth',
+      price: '$129',
+      cadence: '/month',
+      description: 'Scale orchestration across teams with advanced targeting and insights.',
+      features: [
+        'Unlimited workspaces & audiences',
+        'Advanced segmentation & scoring',
+        'Multichannel orchestration',
+        'Experiment & cohort reporting',
+        'Priority Slack support',
+      ],
+      ctaLabel: 'Get started',
+      ctaHref: '#signup',
+      highlight: true,
+      badge: 'Most popular',
+      buttonVariant: 'primary',
+    },
+    {
+      name: 'Scale',
+      price: '$249',
+      cadence: '/month',
+      description: 'Deep integrations, security controls, and concierge launch enablement.',
+      features: [
+        'Enterprise SSO & permissions',
+        '50+ native integrations',
+        'Custom event streaming API',
+        'Lifecycle advisory partner',
+        'Dedicated success manager',
+      ],
+      ctaLabel: 'Talk to sales',
+      ctaHref: '#demo',
+      buttonVariant: 'outline',
     },
   ]
 
@@ -180,44 +233,98 @@ function App() {
           </div>
         </section>
 
-        <section className="stats" id="stats">
-          <div className="container stats__grid">
-            {stats.map((stat) => (
-              <div key={stat.label} className="stats__item">
-                <span className="stats__value">{stat.value}</span>
-                <span className="stats__label">{stat.label}</span>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="section section--light" id="features">
-          <div className="container">
-            <div className="section__header">
-              <span className="eyebrow">Why teams choose LaunchFlow</span>
-              <h2>Everything you need to launch with confidence</h2>
-              <p>
-                LaunchFlow brings planning, automation, intelligence, and collaboration
-                together so every release feels effortless—and every customer touchpoint is
-                intentional.
-              </p>
-            </div>
-            <div className="feature-grid">
-              {features.map((feature) => (
-                <article key={feature.title} className="feature-card">
-                  <span className="feature-card__icon" aria-hidden="true">
-                    {feature.icon}
-                  </span>
-                  <h3>{feature.title}</h3>
-                  <p>{feature.description}</p>
-                  <a className="feature-card__link" href="#stories">
-                    Explore playbook →
-                  </a>
-                </article>
+          <section className="stats" id="stats">
+            <div className="container stats__grid">
+              {stats.map((stat) => (
+                <div key={stat.label} className="stats__item">
+                  <span className="stats__value">{stat.value}</span>
+                  <span className="stats__label">{stat.label}</span>
+                </div>
               ))}
             </div>
-          </div>
-        </section>
+          </section>
+
+          <section className="section section--light" id="features">
+            <div className="container">
+              <div className="section__header">
+                <span className="eyebrow">Why teams choose LaunchFlow</span>
+                <h2>Everything you need to launch with confidence</h2>
+                <p>
+                  LaunchFlow brings planning, automation, intelligence, and collaboration together
+                  so every release feels effortless—and every customer touchpoint is intentional.
+                </p>
+              </div>
+              <div className="feature-grid">
+                {features.map((feature) => (
+                  <article key={feature.title} className="feature-card">
+                    <span className="feature-card__icon" aria-hidden="true">
+                      {feature.icon}
+                    </span>
+                    <h3>{feature.title}</h3>
+                    <p>{feature.description}</p>
+                    <a className="feature-card__link" href="#stories">
+                      Explore playbook →
+                    </a>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="section section--muted" id="pricing">
+            <div className="container">
+              <div className="section__header section__header--center">
+                <span className="eyebrow">Pricing</span>
+                <h2>Plans that scale with every launch milestone</h2>
+                <p>
+                  Pick the plan that fits your launch cadence. Every tier includes collaborative
+                  workflows, automated journeys, and analytics that keep the whole team aligned.
+                </p>
+              </div>
+              <div className="pricing-grid" role="list">
+                {pricingPlans.map((plan) => (
+                  <article
+                    key={plan.name}
+                    className={`pricing-card${plan.highlight ? ' pricing-card--highlight' : ''}`}
+                    role="listitem"
+                  >
+                    {plan.badge ? <span className="pricing-card__badge">{plan.badge}</span> : null}
+                    <header className="pricing-card__header">
+                      <div>
+                        <h3>{plan.name}</h3>
+                        <p>{plan.description}</p>
+                      </div>
+                    </header>
+                    <div className="pricing-card__price">
+                      <span className="pricing-card__amount">{plan.price}</span>
+                      <span className="pricing-card__cadence">{plan.cadence}</span>
+                    </div>
+                    <ul className="pricing-card__features">
+                      {plan.features.map((feature) => (
+                        <li key={feature}>{feature}</li>
+                      ))}
+                    </ul>
+                    <a
+                      className={`button ${
+                        plan.buttonVariant === 'primary'
+                          ? 'button--primary button--lg'
+                          : plan.buttonVariant === 'ghost'
+                          ? 'button--ghost button--lg'
+                          : 'button--outline button--lg'
+                      }`}
+                      href={plan.ctaHref}
+                    >
+                      {plan.ctaLabel}
+                    </a>
+                  </article>
+                ))}
+              </div>
+              <p className="pricing__fine-print">
+                Need a custom plan? We&apos;ll tailor pricing for organizations with advanced
+                compliance requirements or high-volume orchestration needs.
+              </p>
+            </div>
+          </section>
 
         <section className="section section--dark" id="stories">
           <div className="container testimonials">
